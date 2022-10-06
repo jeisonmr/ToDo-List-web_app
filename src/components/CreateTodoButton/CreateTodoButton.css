@@ -1,0 +1,15 @@
+*{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+}
+.CreateTodoButton{
+      width: 60px;
+      height: 50px;
+      border: none;
+      background-color: #FFF;
+      padding: 0 10px;
+}
+.CreateTodoButton > img{
+  width: 35px;
+}

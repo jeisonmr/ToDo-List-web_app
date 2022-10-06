@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.todoItems {
+  width: 80%;
+  background-color: #111111;
+  box-shadow: #000000 5px 5px 10px;
+  margin: 10px 0;
+  display: flex;
+  position: relative;
+}
+.todoItems > ul > li {
+  color: #fff;
+  font-size: 20px;
+  font-family: "Silkscreen", cursive;
+  list-style: none;
+  display: flex;
+  position: relative;
+}
+.complete{
+  text-decoration: line-through;
+}
+.delete{
+  display: none;
+}
+.btn-section {
+  position: absolute;
+  right: 0;
+}
+.btn {
+  width: 20px;
+  background-color: transparent;
+  border: none;
+  margin: 5px 5px;
+}
+.icon {
+  width: 20px;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(253deg)
+    brightness(104%) contrast(102%);
+  /* transition: .1s; */
+}
+.deleteInCheck:hover {
+  filter: invert(26%) sepia(86%) saturate(5463%) hue-rotate(352deg) brightness(99%) contrast(132%);
+}
+.okInCheck:hover {
+  filter: invert(65%) sepia(57%) saturate(2830%) hue-rotate(46deg) brightness(97%) contrast(101%);
+}
+.okOn{
+  filter: invert(65%) sepia(57%) saturate(2830%) hue-rotate(46deg) brightness(97%) contrast(101%);
+
+}
