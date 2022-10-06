@@ -41,7 +41,7 @@ export const defaultTodos = [
   },
   {
     id: 9,
-    task: "Pagar mis gastos",
+    task: "Comprar ropa",
     completed: false,
   },
 ];
