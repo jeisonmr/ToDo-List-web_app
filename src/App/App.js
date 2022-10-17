@@ -4,27 +4,22 @@ import { TodoList } from "../components/TodoList/TodoList";
 import { TodoItems } from "../components/TodoItems/TodoItems";
 import { TodoSearch } from "../components/TodoSearch/TodoSearch";
 import { CreateTodoButton } from "../components/CreateTodoButton/CreateTodoButton";
+// Importanto el Custom Hook.
+import { useLocalStorage } from "../components/hooks/useLocalStorage";
 import "./App.css";
 // Data estatica desde un objeto.
 import { defaultTodos } from "../asset/data/list.data.js";
 
-function App() {
-  // Array vacio para la lista de To Do
-  let todosBD = [];
-  // Declaración y creación del LocalStorage.
-  const localStorageTodos = localStorage.getItem("BD_V1");
 
-  // Condicion que devuelve si el LocalStorage esta vacio no muestra To Do, pero si tiene data la muestra.
-  if (!localStorageTodos) {
-    localStorage.setItem("BD_V1", JSON.stringify([]));
-  } else {
-    todosBD = JSON.parse(localStorageTodos);
-  }
+
+
+function App() {
+
+  const [lista, saveTodos] = useLocalStorage('BD_V1', []);
+
 
   // hook de estado que verifica el value de la caja de busqueda
   const [search, setSearch] = useState("");
-  // Estado inicial de nuestros TODOs
-  const [lista, setLista] = useState(todosBD);
   // Cantidad de TODOs completados
   const completedTodos = lista.filter((todo) => !!todo.completed).length;
   // Cantidad total de TODOs
@@ -47,12 +42,7 @@ function App() {
   // Agrear nuevos To Do.
   const addTodos = () => {};
 
-  // Guardar los cambios sea eliminar o completar el To Do.
-  const saveTodos = (newSaveTodos) => {
-    const stringifyTodos = JSON.stringify(newSaveTodos);
-    localStorage.setItem("BD_V1", stringifyTodos);
-    setLista(newSaveTodos);
-  };
+  
 
   // Cambiar el estado del To Do a completado o devolverlo al estado inicial.
   const completeTodo = (id) => {
