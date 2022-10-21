@@ -1,37 +1,39 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { TodoCounter } from "../components/TodoCounter/TodoCounter";
+import { TodoContext } from '../components/hooks/useContext'
 import { TodoList } from "../components/TodoList/TodoList";
 import { TodoItems } from "../components/TodoItems/TodoItems";
 import { TodoSearch } from "../components/TodoSearch/TodoSearch";
 import { CreateTodoButton } from "../components/CreateTodoButton/CreateTodoButton";
 
-function AppUI({
-      loading,
-      error,
-      totalTodos,
-      completedTodos,
-      searchValue,
-      setSearchValue,
-      searchedTodos,
-      completeTodo,
-      deleteTodo,
-    }) {
+function AppUI() {
   return (
     <>
       <section className="Apps">
         {/* Componente contenedor */}
         <section className="containerApp">
           {/*Titulo y contador de estados y cantidad de los componentes */}
-          <TodoCounter todos={totalTodos} completed={completedTodos} />
+          <TodoCounter />
           <div className="containerSearchAdd">
             {/* Buscador de To Do en la lista */}
-            <TodoSearch search={searchValue} setSearch={setSearchValue} />
+            <TodoSearch />
             {/* Apertura del modal para crear nuevos To Do */}
             <CreateTodoButton />
           </div>
 
-          {/* Lista del conjunto de To Do */}
-          <TodoList>
+    <TodoContext.Consumer>
+    {({
+        loading,
+        error,
+        totalTodos,
+        completedTodos,
+        searchValue,
+        setSearchValue,
+        searchedTodos,
+        completeTodo,
+        deleteTodo,
+      })=>(
+        <TodoList>
             {loading && <p>Cargando...</p>}
             {error && <p>Error Alert...</p>}
             {(!loading && !searchedTodos.length) && <p>Crea una tarea!</p>}
@@ -47,6 +49,8 @@ function AppUI({
               />
             ))}
           </TodoList>
+    )}
+    </TodoContext.Consumer>
         </section>
       </section>
     </>
